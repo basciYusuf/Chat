@@ -3,15 +3,26 @@ import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// Firebase yapılandırması
+// Firebase yapılandırmasını ortam değişkenlerinden oku
 const firebaseConfig = {
-  apiKey: "AIzaSyATfCx5yilCbaCCHyTeNI4xnwikFFQ_-u0",
-  authDomain: "meryuschat2.firebaseapp.com",
-  projectId: "meryuschat2",
-  storageBucket: "meryuschat2.firebasestorage.app",
-  messagingSenderId: "697977617753",
-  appId: "1:697977617753:web:68f4d96c5936f1d941e048"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
+
+// --- GEÇİCİ DEBUG LOG --- 
+console.log("Okunan API Anahtarı:", process.env.REACT_APP_FIREBASE_API_KEY);
+console.log("Oluşturulan Firebase Config:", firebaseConfig);
+// --- GEÇİCİ DEBUG LOG SONU ---
+
+// Değişkenlerin yüklenip yüklenmediğini kontrol et (opsiyonel ama önerilir)
+if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+  console.error("Firebase yapılandırma değişkenleri bulunamadı. .env.local dosyasını kontrol edin.");
+  // Uygulamanın çökmesini veya bir hata mesajı göstermesini sağlayabilirsiniz
+}
 
 // Firebase uygulamasını başlat
 const app = initializeApp(firebaseConfig);
@@ -30,8 +41,8 @@ setPersistence(auth, browserLocalPersistence)
     console.error('Auth persistence hatası:', error);
   });
 
-// Hata ayıklama için konsola bilgi yazdır
-console.log('Firebase yapılandırması yüklendi:', {
+// Hata ayıklama için konsola bilgi yazdır (API Anahtarını yazdırmamaya dikkat!)
+console.log('Firebase yapılandırması yüklendi (ortam değişkenlerinden):', {
   authDomain: firebaseConfig.authDomain,
   projectId: firebaseConfig.projectId,
   storageBucket: firebaseConfig.storageBucket
