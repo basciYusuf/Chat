@@ -81,17 +81,6 @@
     ```
     Uygulama varsayılan olarak `http://localhost:3000` adresinde açılacaktır.
 
-## 🎨 Ekran Görüntüleri
-
-*(Buraya uygulamanızın birkaç ekran görüntüsünü ekleyebilirsiniz. Örneğin: Giriş sayfası, Sohbet listesi, Sohbet ekranı, Grup sohbeti, Ayarlar vb.)*
-
-```
-[Ekran Görüntüsü 1 Açıklaması]
-<img src="/path/to/screenshot1.png" width="400" />
-
-[Ekran Görüntüsü 2 Açıklaması]
-<img src="/path/to/screenshot2.png" width="400" />
-```
 
 ## 📄 Güvenlik Kuralları (Firestore)
 
